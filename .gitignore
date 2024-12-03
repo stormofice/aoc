@@ -2,3 +2,10 @@ cmake-build-debug/
 cmake-build-release/
 .idea/
 inputs/
+.cache/
+.fleet/
+Makefile
+CMakeFiles/
+compile_commands.json
+CMakeCache.txt
+cmake_install.cmake
