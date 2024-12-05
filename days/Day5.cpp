@@ -74,8 +74,8 @@ void Day5::run() {
 
             std::string token;
 
-            int key;
-            int val;
+            int key = -1;
+            int val = -1;
             if (std::getline(iss, token, '|')) {
                 key = std::stoi(token);
             }
@@ -101,6 +101,7 @@ void Day5::run() {
         }
     }
 
+    /*
     std::println("Got {} rule keys and {} updates", rules.size(), updates.size());
     for (const auto & [ key, rset ] : rules) {
         std::print("{}: ", key);
@@ -109,6 +110,7 @@ void Day5::run() {
         }
         std::println();
     }
+    */
 
     auto middle_sum = 0;
     auto fixed_middle_sum = 0;

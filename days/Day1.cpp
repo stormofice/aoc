@@ -2,8 +2,7 @@
 
 #include "../lib.h"
 
-void Day1::run()
-{
+void Day1::run() {
     constexpr auto file_path = "../inputs/day1.input";
     std::ifstream infile(file_path);
 
@@ -48,5 +47,4 @@ void Day1::run()
     });
 
     std::println("Total similarity: {}", similarity);
-
 }
