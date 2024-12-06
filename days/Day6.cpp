@@ -219,7 +219,8 @@ void Day6::run() {
 
     std::println("Input:");
     visualize(g);
-    // simulate(g);
+    auto g1t = g;
+    simulate(g1t);
     // std::println("Visited {} unique places", g.visited.size());
 
     std::println("Starting obstruction search!");
@@ -227,42 +228,38 @@ void Day6::run() {
     auto loop_count = 0;
     auto sims = 0;
 
-    for (auto y = 0; y < g.height; y++) {
-        for (auto x = 0; x < g.width; x++) {
+    for (const auto & [ x, y ] : g1t.visited) {
+        char c = g.map[y][x];
+        switch (c) {
+        case '^':
+        case '#':
+            continue;
+        case '.': {
 
+            // Game g2 = g;
+            auto px = g.playerx;
+            auto py = g.playery;
+            auto pd = g.dir;
 
-            char c = g.map[y][x];
-            switch (c) {
-            case '^':
-            case '#':
-                continue;
-            case '.': {
+            g.map[y][x] = '#';
 
-                // Game g2 = g;
-                auto px = g.playerx;
-                auto py = g.playery;
-                auto pd = g.dir;
-
-                g.map[y][x] = '#';
-
-                auto res = obstruction_simulate(g);
-                if (res == SimulationResult::Loop) {
-                    loop_count++;
-                    // std::println("Sim[{}][{}] -> Loop", y, x);
-                } else {
-                    // std::println("Sim[{}][{}] -> Gone", y, x);
-                }
-                sims++;
-
-                g.map[y][x] = '.';
-                g.map[g.playery][g.playerx] = '.';
-                g.map[py][px] = '^';
-                g.pvis.clear();
-                g.playerx = px;
-                g.playery = py;
-                g.dir = pd;
+            auto res = obstruction_simulate(g);
+            if (res == SimulationResult::Loop) {
+                loop_count++;
+                // std::println("Sim[{}][{}] -> Loop", y, x);
+            } else {
+                // std::println("Sim[{}][{}] -> Gone", y, x);
             }
-            }
+            sims++;
+
+            g.map[y][x] = '.';
+            g.map[g.playery][g.playerx] = '.';
+            g.map[py][px] = '^';
+            g.pvis.clear();
+            g.playerx = px;
+            g.playery = py;
+            g.dir = pd;
+        }
         }
     }
 
