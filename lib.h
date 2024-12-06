@@ -11,3 +11,6 @@
 #include <sstream>
 #include <iterator>
 #include <iostream>
+#include <tuple>
+#include <ios>
+#include <ostream>

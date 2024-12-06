@@ -33,7 +33,8 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     message(STATUS "Building in release mode")
     add_compile_options(
-        -O3
+        -Ofast
+        -march=native
     )
 endif()
 
@@ -49,4 +50,6 @@ add_executable(aoc2024 main.cpp
         days/Day4.h
         days/Day5.cpp
         days/Day5.h
+        days/Day6.cpp
+        days/Day6.h
         )
