@@ -6,6 +6,7 @@
 #include "days/Day6.h"
 #include "days/Day7.h"
 #include "days/Day8.h"
+#include "days/Day9.h"
 
 int main() {
 #ifdef false
@@ -23,9 +24,11 @@ int main() {
     day6.run();
     auto day7 = Day7{};
     day7.run();
-#endif
     auto day8 = Day8{};
     day8.run();
+#endif
+    auto day9 = Day9{};
+    day9.run();
 
     return 0;
 }
