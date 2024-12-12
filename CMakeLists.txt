@@ -64,4 +64,30 @@ add_executable(aoc2024 main.cpp
         days/Day11.h
         days/Day12.cpp
         days/Day12.h
+        days/Day13.cpp
+        days/Day13.h
+        days/Day14.cpp
+        days/Day14.h
+        days/Day15.cpp
+        days/Day15.h
+        days/Day16.cpp
+        days/Day16.h
+        days/Day17.cpp
+        days/Day17.h
+        days/Day18.cpp
+        days/Day18.h
+        days/Day19.cpp
+        days/Day19.h
+        days/Day20.cpp
+        days/Day20.h
+        days/Day21.cpp
+        days/Day21.h
+        days/Day22.cpp
+        days/Day22.h
+        days/Day23.cpp
+        days/Day23.h
+        days/Day24.cpp
+        days/Day24.h
+        days/Day25.cpp
+        days/Day25.h
         )
