@@ -111,12 +111,12 @@ long side_count(const std::unordered_set<point, uwu_hash> &points) {
 
             xidx += (rl - 1);
 
-            std::println("[{}] found run length of {} starting at {}", y, rl, xv);
+            // std::println("[{}] found run length of {} starting at {}", y, rl, xv);
             sides++;
         }
     }
 
-    std::println("y down sc: {}", sides);
+    // std::println("y down sc: {}", sides);
 
     for (const auto & [ y, xCoords ] : ygrouped) {
 
@@ -141,7 +141,7 @@ long side_count(const std::unordered_set<point, uwu_hash> &points) {
         }
     }
 
-    std::println("y up sc: {}", sides);
+    // std::println("y up sc: {}", sides);
 
 
     std::unordered_map<int, std::vector<int>> xgrouped;
@@ -177,22 +177,16 @@ long side_count(const std::unordered_set<point, uwu_hash> &points) {
         }
     }
 
-    std::println("x left sc: {}", sides);
-
-    for (const auto &mm : xgrouped[4]) {
-        std::print("{}", mm);
-    }
-    std::println("{} ", xgrouped[4].size());
-    std::println();
+    // std::println("x left sc: {}", sides);
 
     for (const auto & [ x, yCoords ] : xgrouped) {
 
-        std::println("@ x = {}", x);
+        //std::println("@ x = {}", x);
 
         for (auto yidx = 0; yidx < yCoords.size(); yidx++) {
             const auto yv = yCoords[yidx];
 
-            std::println("@ y = {}", yv);
+            //std::println("@ y = {}", yv);
 
             if (points.contains(std::make_pair(yv, x + 1)))
                 continue;
@@ -207,12 +201,12 @@ long side_count(const std::unordered_set<point, uwu_hash> &points) {
 
             yidx += (rl - 1);
 
-            std::println("[{}] found run length of {} starting at {}", x, rl, yv);
+            //std::println("[{}] found run length of {} starting at {}", x, rl, yv);
             sides++;
         }
     }
 
-    std::println("x right sc: {}", sides);
+    //std::println("x right sc: {}", sides);
 
 
     return sides;
@@ -250,7 +244,7 @@ long pt2checksum(tregions &regions) {
         long area = reg.second.size();
 
         const auto sc = side_count(points);
-        std::println("[{}] Area: {}, SC: {} --> {}", reg.first.first, area, sc, area * sc);
+        //std::println("[{}] Area: {}, SC: {} --> {}", reg.first.first, area, sc, area * sc);
         chk += (area * sc);
     }
 
@@ -277,14 +271,6 @@ void Day12::run() {
         }
         map[idx].emplace_back(ch);
     }
-
-    for (const auto &item : map) {
-        for (const auto &item2 : item) {
-            std::print("{}", item2);
-        }
-        std::println();
-    }
-
     determine_regions(map, regions);
 
     std::println("Found {} unique regions", regions.size());
