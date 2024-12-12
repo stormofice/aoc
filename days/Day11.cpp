@@ -138,7 +138,7 @@ long simulate_stone_memoized(stone initial, int n_blinks) {
 long fast_blink(const std::vector<stone> &stones, int blinks) {
     long total = 0;
     for (const auto &stone : stones) {
-        std::println("fs for {}", stone);
+        // std::println("fs for {}", stone);
         total += simulate_stone_memoized(stone, blinks);
     }
     return total;
@@ -168,8 +168,9 @@ void Day11::run() {
         std::println("Stones: {}", stones.size());
     }*/
 
-
+    auto start = std::chrono::steady_clock::now();
     const auto fb = fast_blink(stones, bc);
-
+    std::cout << "Elapsed(ms)=" << since(start).count() << std::endl;
+    std::println("{}", sim_cache.size());
     std::println("Stones: {}", fb);
 }
