@@ -4,12 +4,15 @@ project(aoc2024)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+find_package(ortools REQUIRED)
+
 add_compile_options(
     -g
     -Wall # Enable all warnings
     -Wextra # Enable extra warnings
     -Werror # Treat warnings as errors
     -Wno-unused-variable
+    -Wno-unused-but-set-variable
     -Wshadow # Warn if a variable declaration shadows one from a parent context
     -Wformat=2 # Perform additional format string checks
     -Wcast-align # Warn about pointer casts that increase alignment
@@ -91,3 +94,5 @@ add_executable(aoc2024 main.cpp
         days/Day25.cpp
         days/Day25.h
         )
+
+target_link_libraries(aoc2024 PRIVATE ortools::ortools)
