@@ -2,19 +2,21 @@ using System.Diagnostics;
 
 namespace aoc2015.days;
 
-internal enum Kind
-{
-    On,
-    Off,
-    Toggle,
-}
 
-internal record Rectangle(int x, int y, int hx, int hy);
-
-internal record Command(Kind kind, Rectangle rect);
 
 public class Day06 : IDay
 {
+    private enum Kind
+    {
+        On,
+        Off,
+        Toggle,
+    }
+
+    private record Rectangle(int x, int y, int hx, int hy);
+
+    private record Command(Kind kind, Rectangle rect);
+
     public uint Day => 6;
 
     public void Run()
