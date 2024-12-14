@@ -1,0 +1,68 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "Configure (Debug)",
+            "program": "cmake",
+            "args": [
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-B",
+                "$PROJECT_DIR$/cmake-build-debug",
+            ],
+        },
+        {
+            "type": "command",
+            "name": "Build (Debug)",
+            "program": "cmake",
+            "args": [
+                "--build",
+                "$PROJECT_DIR$/cmake-build-debug",
+                "--target",
+                "aoc2024"
+            ],
+            "dependsOn": [
+                "Configure (Debug)"
+            ]
+        },
+        {
+            "type": "command",
+            "name": "Configure (Release)",
+            "program": "cmake",
+            "args": [
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-B",
+                "$PROJECT_DIR$/cmake-build-release",
+            ],
+        },
+        {
+            "type": "command",
+            "name": "Build (Release)",
+            "program": "cmake",
+            "args": [
+                "--build",
+                "$PROJECT_DIR$/cmake-build-release",
+                "--target",
+                "aoc2024"
+            ],
+            "dependsOn": [
+                "Configure (Release)"
+            ]
+        },
+        {
+            "type": "command",
+            "name": "Run (Debug)",
+            "program": "$PROJECT_DIR$/cmake-build-debug/aoc2024",
+            "dependsOn": [
+                "Build (Debug)"
+            ]
+        },
+        {
+            "type": "command",
+            "name": "Run (Release)",
+            "program": "$PROJECT_DIR$/cmake-build-release/aoc2024",
+            "dependsOn": [
+                "Build (Release)"
+            ]
+        },
+    ]
+}
