@@ -2,5 +2,5 @@
 
 Directory.SetCurrentDirectory("../../..");
 
-var current = new Day24();
+var current = new Day25();
 current.Run();
