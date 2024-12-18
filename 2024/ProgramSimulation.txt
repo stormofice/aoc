@@ -1,0 +1,55 @@
+Program:
+2,4, 1,7, 7,5, 1,7, 4,6, 0,3, 5,5, 3,0
+
+bst (rA % 8) -> rB
+bxl rB ^= 7
+cdv (rA / (2^rB)) -> rC
+bxl rB ^= 7
+bxc rB ^ rC -> rB
+adv (rA / 2^3) -> rA
+out rB % 8
+
+jnz rA == 0 --> ip=0
+
+
+repeat as long as rA != 0:
+  rB = rA % 8 (throw away everything but the last 3 bits)
+  rB ^= 7 (only keep the off bits, same as not ?)
+  rC = (rA / 2^rB) (C is A divided by 2^max7)
+  rB ^= 7 (invert again, should be the same as before)
+  rB = rB ^ rC
+  rA = rA / 8
+  output rB
+
+b = ~b
+c = bigNo / 2^b
+b = ~b
+b = b ^ c
+
+// a = 0b001
+b = 0b001
+b = 0b110
+c = 0b001 / 2^0b110
+b = 0b001
+b = 0b001 ^ 
+
+
+
+
+The numbers mason, what do they mean
+Simulation for rA=0, bin=0b00000000000000000000000000000000
+0,
+Simulation for rA=1, bin=0b00000000000000000000000000000001
+1,
+Simulation for rA=2, bin=0b00000000000000000000000000000010
+2,
+Simulation for rA=3, bin=0b00000000000000000000000000000011
+3,
+Simulation for rA=4, bin=0b00000000000000000000000000000100
+4,
+Simulation for rA=5, bin=0b00000000000000000000000000000101
+4,
+Simulation for rA=6, bin=0b00000000000000000000000000000110
+5,
+Simulation for rA=7, bin=0b00000000000000000000000000000111
+0,
