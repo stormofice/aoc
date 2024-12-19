@@ -10,7 +10,7 @@ add_compile_options(
     -g
     -Wall # Enable all warnings
     -Wextra # Enable extra warnings
-    -Werror # Treat warnings as errors
+    #-Werror # Treat warnings as errors
     -Wno-unused-variable
     -Wno-unused-but-set-variable
     -Wshadow # Warn if a variable declaration shadows one from a parent context
