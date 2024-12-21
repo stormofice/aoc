@@ -25,7 +25,7 @@
 #include "days/Day25.h"
 
 int main() {
-    auto day = Day19{};
+    auto day = Day20{};
     day.run();
 
     return 0;
