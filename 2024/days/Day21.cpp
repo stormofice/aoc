@@ -60,7 +60,7 @@ std::unordered_map<char, std::unordered_map<char, presses>> gen_number_map() {
                 // xdiff > 0 -> move right
                 // ydiff > 0 -> move down
 
-                if ((ch == 'A' || ch == '0') && (c == '1' || c == '4' || c == '7')) {
+                if (((ch == 'A' || ch == '0') && (c == '1' || c == '4' || c == '7'))) {
                     if (ydiff != 0) {
                         for (auto i = 0; i < std::abs(ydiff); i++) {
                             if (ydiff > 0) {
@@ -346,6 +346,35 @@ unsigned long long perform_single_run(
     return fp(num_map, input, sc);
 }
 
+std::unordered_map<char, std::unordered_map<char, std::vector<char>>> xdd() {
+    std::unordered_map<char, std::unordered_map<char, std::string>> in{
+        {'A', {{'A', "A"}, {'0', "<A"}, {'1', "^<<A"}, {'2', "<^A"}, {'3', "^A"}, {'4', "^^<<A"}, {'5', "<^^A"}, {'6', "^^A"}, {'7', "^^^<<A"}, {'8', "<^^^A"}, {'9', "^^^A"}, {'<', "v<<A"}, {'v', "<vA"}, {'^', "<A"}, {'>', "vA"}}},
+        {'0', {{'A', ">A"}, {'0', "A"}, {'1', "^<A"}, {'2', "^A"}, {'3', "^>A"}, {'4', "^^<A"}, {'5', "^^A"}, {'6', "^^>A"}, {'7', "^^^<A"}, {'8', "^^^A"}, {'9', "^^^>A"}}},
+        {'1', {{'A', ">>vA"}, {'0', ">vA"}, {'1', "A"}, {'2', ">A"}, {'3', ">>A"}, {'4', "^A"}, {'5', "^>A"}, {'6', "^>>A"}, {'7', "^^A"}, {'8', "^^>A"}, {'9', "^^>>A"}}},
+        {'2', {{'A', "v>A"}, {'0', "vA"}, {'1', "<A"}, {'2', "A"}, {'3', ">A"}, {'4', "<^A"}, {'5', "^A"}, {'6', "^>A"}, {'7', "<^^A"}, {'8', "^^A"}, {'9', "^^>A"}}},
+        {'3', {{'A', "vA"}, {'0', "<vA"}, {'1', "<<A"}, {'2', "<A"}, {'3', "A"}, {'4', "<<^A"}, {'5', "<^A"}, {'6', "^A"}, {'7', "<<^^A"}, {'8', "<^^A"}, {'9', "^^A"}}},
+        {'4', {{'A', ">>vvA"}, {'0', ">vvA"}, {'1', "vA"}, {'2', "v>A"}, {'3', "v>>A"}, {'4', "A"}, {'5', ">A"}, {'6', ">>A"}, {'7', "^A"}, {'8', "^>A"}, {'9', "^>>A"}}},
+        {'5', {{'A', "vv>A"}, {'0', "vvA"}, {'1', "<vA"}, {'2', "vA"}, {'3', "v>A"}, {'4', "<A"}, {'5', "A"}, {'6', ">A"}, {'7', "<^A"}, {'8', "^A"}, {'9', "^>A"}}},
+        {'6', {{'A', "vvA"}, {'0', "<vvA"}, {'1', "<<vA"}, {'2', "<vA"}, {'3', "vA"}, {'4', "<<A"}, {'5', "<A"}, {'6', "A"}, {'7', "<<^A"}, {'8', "<^A"}, {'9', "^A"}}},
+        {'7', {{'A', ">>vvvA"}, {'0', ">vvvA"}, {'1', "vvA"}, {'2', "vv>A"}, {'3', "vv>>A"}, {'4', "vA"}, {'5', "v>A"}, {'6', "v>>A"}, {'7', "A"}, {'8', ">A"}, {'9', ">>A"}}},
+        {'8', {{'A', "vvv>A"}, {'0', "vvvA"}, {'1', "<vvA"}, {'2', "vvA"}, {'3', "vv>A"}, {'4', "<vA"}, {'5', "vA"}, {'6', "v>A"}, {'7', "<A"}, {'8', "A"}, {'9', ">A"}}},
+        {'9', {{'A', "vvvA"}, {'0', "<vvvA"}, {'1', "<<vvA"}, {'2', "<vvA"}, {'3', "vvA"}, {'4', "<<vA"}, {'5', "<vA"}, {'6', "vA"}, {'7', "<<A"}, {'8', "<A"}, {'9', "A"}}},
+        {'<', {{'A', ">>^A"}, {'<', "A"}, {'v', ">A"}, {'^', ">^A"}, {'>', ">>A"}}},
+        {'v', {{'A', "^>A"}, {'<', "<A"}, {'v', "A"}, {'^', "^A"}, {'>', ">A"}}},
+        {'^', {{'A', ">A"}, {'<', "v<A"}, {'v', "vA"}, {'^', "A"}, {'>', "v>A"}}},
+        {'>', {{'A', "^A"}, {'<', "<<A"}, {'v', "<A"}, {'^', "<^A"}, {'>', "A"}}}};
+    std::unordered_map<char, std::unordered_map<char, std::vector<char>>> result{};
+
+    for (const auto & [ outer_key, inner_map ] : in) {
+        for (const auto & [ inner_key, str_value ] : inner_map) {
+            std::vector<char> char_vec(str_value.begin(), str_value.end());
+
+            result[outer_key][inner_key] = std::move(char_vec);
+        }
+    }
+
+    return result;
+}
 
 void Day21::run() {
     const auto nmap = gen_number_map();
@@ -404,6 +433,8 @@ void Day21::run() {
 
     auto complexity = 0ULL;
     auto idx = 0;
+
+    comb = xdd();
 
     for (const auto &input : inputs) {
         const auto l = perform_single_run(comb, dmap, input, sc);
